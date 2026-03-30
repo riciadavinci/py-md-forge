@@ -1,0 +1,47 @@
+Hey Gemini,
+I am planning to make a Python CLI tool to compile Markdown files, specifically the README.md file for my projects on Github. I would not be creating an explicit README.md file for projects, instead, I will create a docs directory with a TEMPLATE.md file that will contain special syntax to include sub-files (which are markdown files themselves). An example of TEMPLATE.md would be something as follows:
+
+```plaintext - TEMPLATE.md
+
+{{DESCRIPTION}}
+
+{{TABLE_OF_CONTENTS}}
+
+{{SECTION_1}}
+
+{{SECTION_2}}
+
+{{SECTION_3}}
+
+.
+.
+.
+
+{{SUMMARY}}
+
+```
+This input Template file would be passed as a required CLI argument. All the sub-files should follow the names given within "{{}}". If files are not found, it will throw an error.
+
+I will also have special syntax for images within these sub-files. Example:
+```plaintext - DESCRIPTION.md
+
+MARKDOWN_IMAGE_LINK=/filename.png
+
+```
+This will be replaced with the input image path passed as another required CLI argument.
+
+The project root would look something like this:
+/sample-project
+  ├──.gitignore
+  ├──src/ 			# It might contain source files
+  ├──deps/ 			# It might contain external dependencies
+  ├──docs/			# Contains Markdown files that will be compiled into a single README.md file
+  │  ├──img/		# Contains images for the sub-section files. The image paths will be replaced for final README.md
+  │  ├──TEMPLATE.md
+  │  ├──TOC.md
+  │  ├──SECTION_1.md
+  │  ├──SECTION_2.md
+  │  └──CONCLUSION.md
+  └──@py-md-compiler/ # The project we are discussing included as a sub-module (can also be placed under utils/ dir)
+
+What should I name the project? How should I go about unit-testing the project? I don't have a particular preference and can go with either Python's built-in Unit-test module or Pytest. How should I actually go about the project? How can I write a solid requirements document for the project? I want to build this project's README.md by using the tool itself.
